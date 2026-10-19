@@ -1,7 +1,10 @@
 node_modules
 .next
 out
+.open-next
 .env*.local
 npm-debug.log*
 .DS_Store
 Thumbs.db
+.wrangler
+.dev.vars

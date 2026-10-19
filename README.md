@@ -112,6 +112,62 @@ After launch:
 
 For country-specific rankings (India, USA, UAE, etc.), plan dedicated landing pages or localized content later—one homepage cannot honestly target every city worldwide without real local relevance.
 
+## Google Search (after you have a live URL)
+
+Google does not “add” sites automatically. Use a **custom domain** (not only `*.vercel.app`) for a business site.
+
+1. Deploy the site so `https://yourdomain.com` loads in a browser.
+2. In code, set `siteConfig.url` in `src/data/site.ts` to that exact URL (no trailing slash), redeploy, then confirm:
+   - `https://yourdomain.com/robots.txt`
+   - `https://yourdomain.com/sitemap.xml`
+3. Open [Google Search Console](https://search.google.com/search-console) → **Add property**:
+   - Prefer **Domain** (`yourdomain.com`) if you can add a DNS TXT record at your registrar, or
+   - **URL prefix** (`https://yourdomain.com`) and verify via DNS or HTML tag.
+4. **Sitemaps** → submit: `https://yourdomain.com/sitemap.xml`
+5. **URL inspection** → enter your homepage → **Request indexing** (once; crawling still takes days or weeks).
+6. Optional: [Bing Webmaster Tools](https://www.bing.com/webmasters) (also used by some other engines).
+
+Indexing is not instant. Rankings for competitive terms take content, links, and time—not only sitemap submission.
+
+## Deploy on Cloudflare (Pages — static export)
+
+The homepage is fully static. Cloudflare builds with **`CLOUDFLARE_BUILD=1`** → `output: "export"` → folder **`out/`**. This avoids OpenNext/Workers and the **sharp** `.node` bundle error.
+
+In **Workers & Pages** → your project → **Settings** → **Build**:
+
+| Setting | Value |
+|--------|--------|
+| **Install command** | `npm ci` or `npm install` |
+| **Build command** | `npm run build:cloudflare` |
+| **Build output directory** | `out` |
+| **Deploy command** | `npx wrangler pages deploy out --project-name=konark-chemicals` |
+
+Remove **`npx wrangler deploy`** (Workers) if it is still set—that path triggers OpenNext and fails on sharp.
+
+Or use **Pages** “Connect Git” with framework **None**, build `npm run build:cloudflare`, output **`out`**.
+
+**Docker** production still uses `DOCKER_BUILD=1` + `standalone` (see `Dockerfile`).
+
+### Move from Vercel to Cloudflare
+
+### B. Use your domain on Cloudflare
+
+1. Add the site in Cloudflare (**Websites** → **Add a site**) if the domain is not there yet.
+2. Point the domain’s **nameservers** at your registrar to Cloudflare (or keep DNS elsewhere and add a **CNAME** to your Pages project—Cloudflare documents both).
+3. In **Pages** → your project → **Custom domains** → add `yourdomain.com` and `www` if needed.
+4. Wait for SSL to show **Active**.
+
+### C. Leave Vercel (when Cloudflare works)
+
+1. In Vercel: remove the **custom domain** from the project (so DNS is not split).
+2. Delete or pause the Vercel project if you no longer need previews there.
+3. Update `siteConfig.url`, redeploy on Cloudflare, resubmit sitemap in Search Console if the hostname changed.
+
+### D. Search Console after a move
+
+- If the **same domain** moves from Vercel to Cloudflare: usually no new property; resubmit sitemap after deploy.
+- If you change **domain** (e.g. from `*.vercel.app` to `yourdomain.com`): add the new property in Search Console and submit the sitemap again.
+
 ## Project structure
 
 ```

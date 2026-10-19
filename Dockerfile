@@ -21,6 +21,7 @@ RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ENV DOCKER_BUILD=1
 RUN npm run build
 
 # --- Production runtime ---

@@ -93,9 +93,24 @@ Standalone Next.js output is used in the production stage (`output: "standalone"
 | Benefits | `src/data/benefits.ts` |
 | Photography | `public/images/` (keep filenames or update references in data files) |
 | Contact form backend | `submitInquiry()` in `src/components/sections/ContactSection.tsx` |
-| SEO / fonts | `src/app/layout.tsx` |
+| SEO keywords, regions, schema copy | `src/data/seo.ts` |
+| Live domain (canonical, sitemap) | `siteConfig.url` in `src/data/site.ts` |
 
 Replace bracketed `[placeholder]` strings with verified company and product information before go-live.
+
+## Search visibility (SEO)
+
+This site includes titles, descriptions, keywords, `robots.txt`, `sitemap.xml`, and JSON-LD (`Organization` / `WebSite`). **Meta keywords alone cannot guarantee first position** in Google for every country or query. Ranking depends on your real domain, content, backlinks, reviews, speed, and how you show up in Search Console.
+
+After launch:
+
+1. Set **`siteConfig.url`** to your real HTTPS domain (e.g. `https://yourcompany.com`).
+2. Edit **`src/data/seo.ts`** — keywords and `regionsServed` must match what you actually supply.
+3. Register the site in [Google Search Console](https://search.google.com/search-console) and submit the sitemap (`/sitemap.xml`).
+4. Add accurate Google Business Profile / local listings where you have a real address.
+5. Build trust: case studies, technical pages, industry directories, and consistent company name + NAP (name, address, phone) across the web.
+
+For country-specific rankings (India, USA, UAE, etc.), plan dedicated landing pages or localized content later—one homepage cannot honestly target every city worldwide without real local relevance.
 
 ## Project structure
 

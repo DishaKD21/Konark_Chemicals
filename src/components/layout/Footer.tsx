@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { navLinks, siteConfig } from "@/data/site";
 import { primaryProduct } from "@/data/products";
+import { seoConfig } from "@/data/seo";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -14,6 +15,12 @@ export function Footer() {
           </p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone/90">
             {siteConfig.description}
+          </p>
+          <p className="mt-4 max-w-sm text-xs leading-relaxed text-soft-grey">
+            Phosphating chemical manufacturer and supplier for industrial metal
+            surface treatment — export and bulk inquiries from{" "}
+            {seoConfig.regionsServed.slice(0, -1).join(", ")}, and{" "}
+            {seoConfig.regionsServed.at(-1)}.
           </p>
         </div>
 

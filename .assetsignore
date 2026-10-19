@@ -1,0 +1,4 @@
+# Prevent Wrangler from treating this as a Next.js Worker app (OpenNext / sharp).
+open-next.config.ts
+open-next.config.js
+.open-next

@@ -5,7 +5,9 @@ import type { NextConfig } from "next";
  * - CLOUDFLARE_BUILD=1 → static export to `out/` (Cloudflare Pages; no sharp / Workers bundle)
  */
 const isDocker = process.env.DOCKER_BUILD === "1";
-const isCloudflareStatic = process.env.CLOUDFLARE_BUILD === "1";
+const isCloudflareStatic =
+  process.env.CLOUDFLARE_BUILD === "1" ||
+  process.env.CF_PAGES === "1";
 
 const nextConfig: NextConfig = {
   images: {

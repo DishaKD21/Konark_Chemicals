@@ -129,24 +129,22 @@ Google does not “add” sites automatically. Use a **custom domain** (not only
 
 Indexing is not instant. Rankings for competitive terms take content, links, and time—not only sitemap submission.
 
-## Deploy on Cloudflare (Pages — static export)
+## Deploy on Cloudflare (static `out/` — no OpenNext)
 
-The homepage is fully static. Cloudflare builds with **`CLOUDFLARE_BUILD=1`** → `output: "export"` → folder **`out/`**. This avoids OpenNext/Workers and the **sharp** `.node` bundle error.
+The site is **fully static**. `npm run build` exports to **`out/`** (see `scripts/next-build.mjs`). **`wrangler.toml`** tells Wrangler to deploy **`out/`** as static assets—**not** Next.js Workers / OpenNext (avoids the **sharp** error).
 
-In **Workers & Pages** → your project → **Settings** → **Build**:
+In **Workers & Pages** → **konark-chemicals** → **Settings** → **Build**, use:
 
 | Setting | Value |
 |--------|--------|
-| **Install command** | `npm ci` or `npm install` |
-| **Build command** | `npm run build:cloudflare` |
-| **Build output directory** | `out` |
-| **Deploy command** | `npx wrangler pages deploy out --project-name=konark-chemicals` |
+| **Build command** | `npm run build` |
+| **Deploy command** | `npx wrangler deploy` |
 
-Remove **`npx wrangler deploy`** (Workers) if it is still set—that path triggers OpenNext and fails on sharp.
+**Do not** set framework preset to “Next.js” with output `.next`—that re-enables OpenNext on deploy.
 
-Or use **Pages** “Connect Git” with framework **None**, build `npm run build:cloudflare`, output **`out`**.
+After pushing this repo, redeploy. Confirm the build log shows **`Exporting (2/2)`** and that `out/index.html` exists before deploy.
 
-**Docker** production still uses `DOCKER_BUILD=1` + `standalone` (see `Dockerfile`).
+**Docker** uses `npm run build:docker` + `standalone` (see `Dockerfile`).
 
 ### Move from Vercel to Cloudflare
 

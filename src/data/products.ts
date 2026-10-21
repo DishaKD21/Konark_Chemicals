@@ -25,7 +25,9 @@ export type Product = {
   applications: string[];
   compatibleSubstrates: string[];
   keyFeatures: string[];
+  /** @deprecated Use dataSheetPdf */
   technicalDataSheet?: string;
+  dataSheetPdf?: string;
   technicalSpecifications: TechnicalSpec[];
   availabilityOrInquiryText: string;
   featured?: boolean;
@@ -46,6 +48,10 @@ const defaultAfter: GalleryImage[] = [
     caption: "After approved phosphating sequence",
   },
 ];
+
+function dataSheetPath(slug: string): string {
+  return `/documents/products/${slug}.pdf`;
+}
 
 function gallery(
   slug: string,
@@ -99,7 +105,7 @@ export const products: Product[] = [
       "Process support available for line integration inquiries",
       "Technical data sheet available on request when issued",
     ],
-    technicalDataSheet: undefined,
+    dataSheetPdf: dataSheetPath("k18-gray-phosphating-chemical"),
     technicalSpecifications: [],
     availabilityOrInquiryText: "Bulk and industrial supply — contact for availability and documentation.",
     featured: true,
@@ -126,6 +132,7 @@ export const products: Product[] = [
     applications: ["[Applications — confirm per product]"],
     compatibleSubstrates: ["[Substrates — confirm per product]"],
     keyFeatures: ["[Key features — confirm per product]"],
+    dataSheetPdf: dataSheetPath("product-02-phosphating-chemical"),
     technicalSpecifications: [],
     availabilityOrInquiryText: "Contact us for product information and technical documentation.",
     featured: true,
@@ -149,6 +156,7 @@ export const products: Product[] = [
     applications: ["[Applications — confirm]"],
     compatibleSubstrates: ["[Substrates — confirm]"],
     keyFeatures: ["[Features — confirm]"],
+    dataSheetPdf: dataSheetPath("product-03-phosphating-chemical"),
     technicalSpecifications: [],
     availabilityOrInquiryText: "Available on inquiry.",
     featured: true,
@@ -172,6 +180,7 @@ export const products: Product[] = [
     applications: ["[Applications — confirm]"],
     compatibleSubstrates: ["[Substrates — confirm]"],
     keyFeatures: ["[Features — confirm]"],
+    dataSheetPdf: dataSheetPath("product-04-phosphating-chemical"),
     technicalSpecifications: [],
     availabilityOrInquiryText: "Available on inquiry.",
     featured: false,
@@ -195,6 +204,7 @@ export const products: Product[] = [
     applications: ["[Applications — confirm]"],
     compatibleSubstrates: ["[Substrates — confirm]"],
     keyFeatures: ["[Features — confirm]"],
+    dataSheetPdf: dataSheetPath("product-05-phosphating-chemical"),
     technicalSpecifications: [],
     availabilityOrInquiryText: "Available on inquiry.",
     featured: true,
@@ -218,6 +228,7 @@ export const products: Product[] = [
     applications: ["[Applications — confirm]"],
     compatibleSubstrates: ["[Substrates — confirm]"],
     keyFeatures: ["[Features — confirm]"],
+    dataSheetPdf: dataSheetPath("product-06-phosphating-chemical"),
     technicalSpecifications: [],
     availabilityOrInquiryText: "Available on inquiry.",
     featured: false,
@@ -241,6 +252,7 @@ export const products: Product[] = [
     applications: ["[Applications — confirm]"],
     compatibleSubstrates: ["[Substrates — confirm]"],
     keyFeatures: ["[Features — confirm]"],
+    dataSheetPdf: dataSheetPath("product-07-phosphating-chemical"),
     technicalSpecifications: [],
     availabilityOrInquiryText: "Available on inquiry.",
     featured: false,

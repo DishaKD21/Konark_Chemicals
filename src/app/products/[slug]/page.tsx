@@ -56,11 +56,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 {product.shortDescription}
               </p>
               <div className="mt-8">
-                <ProductDetailActions
-                  productName={product.productName}
-                  slug={product.slug}
-                  pdfUrl={product.technicalDataSheet}
-                />
+            <ProductDetailActions product={product} />
               </div>
             </div>
             <div className="lg:col-span-6">

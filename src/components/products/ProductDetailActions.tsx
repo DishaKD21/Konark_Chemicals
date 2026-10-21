@@ -2,46 +2,32 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { TechnicalDataSheetModal } from "@/components/products/TechnicalDataSheetModal";
+import { DataSheetPdfModal } from "@/components/products/DataSheetPdfModal";
+import { getProductDataSheetPdf } from "@/lib/product-media";
+import type { Product } from "@/data/products";
 
 type ProductDetailActionsProps = {
-  productName: string;
-  slug: string;
-  pdfUrl?: string;
+  product: Product;
 };
 
-export function ProductDetailActions({
-  productName,
-  slug,
-  pdfUrl,
-}: ProductDetailActionsProps) {
+export function ProductDetailActions({ product }: ProductDetailActionsProps) {
   const [tdsOpen, setTdsOpen] = useState(false);
-  const contactHref = `/contact?product=${encodeURIComponent(slug)}`;
+  const contactHref = `/contact?product=${encodeURIComponent(product.slug)}`;
+  const pdfUrl = getProductDataSheetPdf(product);
 
   return (
     <>
       <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Button href={contactHref}>Request a quote</Button>
-        {pdfUrl ? (
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => setTdsOpen(true)}
-          >
-            View Technical Data Sheet
-          </Button>
-        ) : (
-          <Button href={contactHref} variant="secondary">
-            Technical Data Sheet on request
-          </Button>
-        )}
+        <Button type="button" variant="secondary" onClick={() => setTdsOpen(true)}>
+          Data sheet
+        </Button>
       </div>
-      <TechnicalDataSheetModal
+      <DataSheetPdfModal
         open={tdsOpen}
         onClose={() => setTdsOpen(false)}
-        productName={productName}
+        productName={product.productName}
         pdfUrl={pdfUrl}
-        contactHref={contactHref}
       />
     </>
   );

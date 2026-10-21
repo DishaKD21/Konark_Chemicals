@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
-import { ProductCard } from "@/components/products/ProductCard";
+import { ProductsCatalog } from "@/components/products/ProductsCatalog";
 import { getAllProducts, getProductCategories } from "@/lib/products";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -27,10 +27,8 @@ export default function ProductsPage() {
           <p className="text-body-sm text-soft-grey">
             Categories: {categories.join(" · ")}
           </p>
-          <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="mt-8">
+            <ProductsCatalog products={products} />
           </div>
         </div>
       </section>

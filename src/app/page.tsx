@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { HomeIntroSection } from "@/components/sections/HomeIntroSection";
-import { FeaturedProductsSection } from "@/components/sections/FeaturedProductsSection";
 import { SurfaceTransformation } from "@/components/sections/SurfaceTransformation";
 import { ServicesPreviewSection } from "@/components/sections/ServicesPreviewSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
@@ -20,7 +19,6 @@ export default function HomePage() {
     <>
       <HeroSection />
       <HomeIntroSection />
-      <FeaturedProductsSection />
       <SurfaceTransformation />
       <ServicesPreviewSection />
       <BenefitsSection />

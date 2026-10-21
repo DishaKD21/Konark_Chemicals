@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { navLinks } from "@/data/site";
+import { navLinks, siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,7 @@ export function Header() {
   const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logoFailed, setLogoFailed] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -33,37 +35,53 @@ export function Header() {
 
   const navLinkClass = (href: string) =>
     cn(
-      "text-sm tracking-wide transition-colors",
+      "shrink-0 whitespace-nowrap text-[0.8125rem] tracking-normal transition-colors lg:text-sm",
       isDark
-        ? "text-ivory/90 hover:text-ivory"
-        : "rounded-md px-3 py-2 text-graphite/85 hover:bg-sage/60 hover:text-graphite",
+        ? "rounded-md px-2 py-1.5 text-ivory/90 hover:bg-white/10 hover:text-ivory"
+        : "rounded-md px-2 py-1.5 text-graphite/85 hover:bg-sage/60 hover:text-graphite",
       !isDark && pathname === href && "bg-sage text-graphite",
-      isDark && pathname === href && "text-ivory",
+      isDark && pathname === href && "bg-white/10 text-ivory",
     );
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300",
+        "fixed inset-x-0 top-0 z-50 py-2 pb-2.5 transition-[background-color,box-shadow] duration-300 sm:py-2.5 sm:pb-3 pt-[max(0.5rem,env(safe-area-inset-top))]",
         solid
           ? "bg-white/92 shadow-header backdrop-blur-md"
           : "bg-gradient-to-b from-charcoal/70 to-transparent",
       )}
     >
-      <div className="mx-auto flex max-w-editorial items-center justify-between gap-6 px-6 py-4 lg:px-10">
+      <div className="mx-auto flex h-14 max-w-editorial items-center justify-between gap-2 px-4 sm:gap-3 lg:h-16 lg:gap-4 lg:px-8 xl:px-10">
         <Link
           href="/"
-          className={cn(
-            "font-semibold uppercase tracking-[0.12em]",
-            isDark ? "text-lg text-ivory" : "text-graphite",
-          )}
+          className="relative z-10 flex h-full w-36 shrink-0 items-center sm:w-40 lg:w-44"
           onClick={() => setOpen(false)}
         >
-          Konark
+          {!logoFailed ? (
+            <Image
+              src={siteConfig.logo.src}
+              alt={siteConfig.logo.alt}
+              width={siteConfig.logo.width}
+              height={siteConfig.logo.height}
+              className="absolute left-0 top-1/2 h-[10rem] w-auto max-w-[min(68vw,20rem)] -translate-y-1/2 object-contain object-left"
+              onError={() => setLogoFailed(true)}
+              priority
+            />
+          ) : (
+            <span
+              className={cn(
+                "font-semibold uppercase tracking-[0.12em]",
+                isDark ? "text-lg text-ivory" : "text-graphite",
+              )}
+            >
+              Konark
+            </span>
+          )}
         </Link>
 
         <nav
-          className="hidden items-center gap-8 lg:flex"
+          className="hidden min-w-0 flex-1 items-center justify-center gap-1.5 lg:flex xl:gap-3"
           aria-label="Primary"
         >
           {navLinks.map((item) => (
@@ -77,11 +95,12 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden shrink-0 lg:block">
           <Button
             href="/contact"
             variant={isDark ? "ghost" : "primary"}
             className={cn(
+              "whitespace-nowrap px-4 py-2.5 text-xs lg:text-body-sm",
               isDark &&
                 "border border-ivory/30 bg-transparent text-ivory shadow-none ring-0 hover:border-ivory/50 hover:bg-ivory/5",
             )}

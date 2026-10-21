@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
+import { ClientLogoGrid } from "@/components/industries/ClientLogoGrid";
 import { applications } from "@/data/applications";
+import {
+  jobworkClients,
+  productSupplyClients,
+} from "@/data/industry-clients";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -54,6 +59,21 @@ export default function IndustriesPage() {
             </Link>{" "}
             for your components.
           </p>
+        </div>
+      </section>
+
+      <section className="section-y-lg border-t border-graphite/5 bg-sage/25">
+        <div className="mx-auto max-w-editorial space-y-16 px-6 lg:px-10">
+          <ClientLogoGrid
+            title="Companies using our products"
+            description="Illustrative placeholder logos and names for layout preview. Replace with approved customer references when ready to publish."
+            clients={productSupplyClients}
+          />
+          <ClientLogoGrid
+            title="Phosphating jobwork customers"
+            description="Representative placeholder companies for jobwork partnerships. Swap in real client logos and names after confirmation."
+            clients={jobworkClients}
+          />
         </div>
       </section>
     </>

@@ -7,10 +7,10 @@ export const siteConfig = {
     "Manufacturer and supplier of metal pretreatment and phosphating chemicals, with phosphating jobwork services for industrial components.",
   url: "https://konark-chemicals.disha-kd321.workers.dev",
   logo: {
-    src: "/images/brand/konark-logo.png",
+    src: "/logo/logo.png",
     alt: "Konark Chemicals logo",
-    width: 180,
-    height: 56,
+    width: 380,
+    height: 120,
   },
   contact: {
     email: "enquiries@example.com",

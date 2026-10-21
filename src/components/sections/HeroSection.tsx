@@ -28,7 +28,7 @@ export function HeroSection() {
             Industrial Surface Treatment
           </p>
           <div className="mt-6 h-px w-16 bg-copper" aria-hidden="true" />
-          <h1 className="mt-8 text-4xl font-semibold leading-[1.08] tracking-display sm:text-[2.75rem] lg:text-[3.25rem]">
+          <h1 className="mt-8 text-4xl font-semibold leading-[1.08] tracking-display text-ivory sm:text-[2.75rem] lg:text-[3.25rem]">
             Engineered for Metal.
             <br />
             Finished in Black.

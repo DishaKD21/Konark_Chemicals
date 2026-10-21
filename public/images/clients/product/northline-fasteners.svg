@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="Northline Fasteners">
+  <rect x="2" y="8" width="32" height="32" rx="6" fill="#71845B"/>
+  <path d="M10 24h16M18 16v16" stroke="#F6F3EC" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="44" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#242723">NORTHLINE</text>
+</svg>

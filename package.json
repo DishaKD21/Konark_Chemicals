@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "node scripts/next-build.mjs",
     "build:docker": "DOCKER_BUILD=1 next build",
-    "deploy:cloudflare": "wrangler deploy",
+    "predeploy:cloudflare": "node scripts/ensure-out.mjs",
+    "deploy:cloudflare": "npm run build && npm run predeploy:cloudflare && wrangler deploy",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"

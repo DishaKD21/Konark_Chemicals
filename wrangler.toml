@@ -1,7 +1,9 @@
-# Static site from Next.js export (`out/`). Do not use OpenNext / Workers SSR for this project.
+# Konark Chemicals — static Next.js export (run `npm run build` before deploy).
 name = "konark-chemicals"
+main = "worker.js"
 compatibility_date = "2025-03-01"
 
 [assets]
 directory = "./out"
+binding = "ASSETS"
 not_found_handling = "404-page"

@@ -140,6 +140,15 @@ In **Workers & Pages** → **konark-chemicals** → **Settings** → **Build**, 
 | **Build command** | `npm run build` |
 | **Deploy command** | `npx wrangler deploy` |
 
+Or locally (with [Wrangler logged in](https://developers.cloudflare.com/workers/wrangler/commands/#login)):
+
+```bash
+npm ci
+npm run deploy:cloudflare
+```
+
+`deploy:cloudflare` runs build → checks `out/` → uploads `worker.js` + static assets (not a Hello World script).
+
 **Do not** set framework preset to “Next.js” with output `.next`—that re-enables OpenNext on deploy.
 
 After pushing this repo, redeploy. Confirm the build log shows **`Exporting (2/2)`** and that `out/index.html` exists before deploy.

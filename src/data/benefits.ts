@@ -7,21 +7,21 @@ export type Benefit = {
 export const benefits: Benefit[] = [
   {
     number: "01",
-    title: "Consistent black appearance",
+    title: "Industrial product expertise",
     description:
-      "Formulated for a uniform dark conversion-coating aesthetic when the approved pretreatment and operating parameters are maintained.",
+      "Catalogue of pretreatment and phosphating chemicals with technical dialogue for line integration and documentation requests.",
   },
   {
     number: "02",
-    title: "Process-oriented supply",
+    title: "Phosphating jobwork",
     description:
-      "Support focused on integrating phosphating into your existing line — concentrations, bath management, and sequence to be agreed technically.",
+      "Component treatment at our facility — feasibility, scope, and quotation confirmed per inquiry rather than fixed public rates.",
   },
   {
     number: "03",
-    title: "Prepared ferrous substrates",
+    title: "Application-focused support",
     description:
-      "Intended for iron and steel components after appropriate cleaning and surface preparation; substrate specifics confirmed per inquiry.",
+      "Discussion of substrates, pretreatment sequence, and finish requirements aligned to your components — confirmed per application.",
   },
   {
     number: "04",

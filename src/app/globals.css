@@ -22,22 +22,80 @@
   }
 
   body {
-    @apply bg-ivory text-graphite antialiased font-sans text-[15px] leading-relaxed sm:text-base;
+    @apply bg-ivory text-graphite antialiased font-sans text-body-sm sm:text-body;
   }
 
   h1,
   h2,
   h3 {
-    @apply font-display font-semibold tracking-display;
+    @apply font-display font-semibold tracking-display text-graphite;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-copper;
+    @apply outline-2 outline-offset-2 outline-olive/80;
+  }
+}
+
+@layer components {
+  .section-y {
+    @apply py-14 lg:py-20;
+  }
+
+  .section-y-lg {
+    @apply py-16 lg:py-[5.5rem];
+  }
+
+  .eyebrow {
+    @apply text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-olive;
+  }
+
+  .card {
+    @apply rounded-card bg-white shadow-card;
+  }
+
+  .card-hover {
+    @apply transition-[box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-card-hover;
+  }
+
+  .panel {
+    @apply rounded-lg bg-sage/50 p-6 lg:p-8;
+  }
+
+  .panel-muted {
+    @apply rounded-lg bg-white/70 p-6 shadow-soft lg:p-8;
+  }
+
+  .image-frame {
+    @apply overflow-hidden rounded-image bg-sage/40 shadow-soft;
+  }
+
+  .image-frame-hero {
+    @apply overflow-hidden rounded-hero bg-sage/40 shadow-card;
+  }
+
+  .input-field {
+    @apply mt-2 w-full rounded-md border border-graphite/10 bg-white px-4 py-3.5 text-body-sm text-graphite shadow-soft placeholder:text-soft-grey/70 transition-colors focus:border-olive/50 focus:outline-none focus:ring-2 focus:ring-olive/20;
+  }
+
+  .input-field-error {
+    @apply border-red-800/40 focus:border-red-800/50 focus:ring-red-800/15;
+  }
+
+  .btn-base {
+    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-body-sm font-semibold transition-[background-color,box-shadow,transform] duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive/80;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 rounded-md bg-sage/80 px-4 py-2 text-body-sm font-semibold text-graphite transition-colors hover:bg-sage hover:text-copper;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .prose-muted {
+    @apply text-soft-grey leading-relaxed;
   }
 }

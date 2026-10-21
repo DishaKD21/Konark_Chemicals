@@ -1,39 +1,35 @@
 import Link from "next/link";
 import { navLinks, siteConfig } from "@/data/site";
-import { primaryProduct } from "@/data/products";
 import { seoConfig } from "@/data/seo";
+import { getAllProducts } from "@/lib/products";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const products = getAllProducts().slice(0, 4);
 
   return (
-    <footer className="border-t border-ivory/10 bg-charcoal text-ivory">
-      <div className="mx-auto grid max-w-editorial gap-12 px-6 py-16 lg:grid-cols-12 lg:gap-8 lg:px-10">
+    <footer className="mt-8 rounded-t-xl bg-charcoal text-ivory">
+      <div className="mx-auto grid max-w-editorial gap-10 px-6 py-14 lg:grid-cols-12 lg:gap-8 lg:px-10 lg:py-16">
         <div className="lg:col-span-4">
-          <p className="font-display text-xl font-semibold uppercase tracking-[0.1em]">
-            {siteConfig.name}
-          </p>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone/90">
+          <p className="text-lg font-semibold">{siteConfig.name}</p>
+          <p className="mt-4 max-w-sm text-body-sm leading-relaxed text-stone/90">
             {siteConfig.description}
           </p>
-          <p className="mt-4 max-w-sm text-xs leading-relaxed text-soft-grey">
-            Phosphating chemical manufacturer and supplier for industrial metal
-            surface treatment — export and bulk inquiries from{" "}
+          <p className="mt-4 max-w-sm text-body-sm leading-relaxed text-soft-grey">
+            Supply and jobwork inquiries from{" "}
             {seoConfig.regionsServed.slice(0, -1).join(", ")}, and{" "}
             {seoConfig.regionsServed.at(-1)}.
           </p>
         </div>
 
         <div className="lg:col-span-2">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-copper">
-            Navigate
-          </p>
+          <p className="eyebrow text-sage">Navigate</p>
           <ul className="mt-4 space-y-2">
             {navLinks.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm text-stone/90 transition-colors hover:text-ivory"
+                  className="text-body-sm text-stone/90 transition-colors hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -43,48 +39,48 @@ export function Footer() {
         </div>
 
         <div className="lg:col-span-3">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-copper">
-            Product
-          </p>
-          <ul className="mt-4 space-y-2 text-sm text-stone/90">
+          <p className="eyebrow text-sage">Products</p>
+          <ul className="mt-4 space-y-2 text-body-sm text-stone/90">
+            {products.map((p) => (
+              <li key={p.id}>
+                <Link href={`/products/${p.slug}`} className="hover:text-white">
+                  {p.productName}
+                </Link>
+              </li>
+            ))}
             <li>
-              <Link href="#products" className="hover:text-ivory">
-                {primaryProduct.shortName}
-              </Link>
-            </li>
-            <li>
-              <Link href="#inquiry" className="hover:text-ivory">
-                Technical information
+              <Link href="/products" className="font-semibold text-copper hover:text-white">
+                Full catalogue →
               </Link>
             </li>
           </ul>
         </div>
 
         <div className="lg:col-span-3">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-copper">
-            Contact
-          </p>
-          <ul className="mt-4 space-y-2 text-sm text-stone/90">
+          <p className="eyebrow text-sage">Contact</p>
+          <ul className="mt-4 space-y-2 text-body-sm text-stone/90">
             <li>
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="hover:text-ivory"
+                className="hover:text-white"
               >
                 {siteConfig.contact.email}
               </a>
             </li>
-            <li>{siteConfig.contact.phone}</li>
+            <li>
+              <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>
+                {siteConfig.contact.phone}
+              </a>
+            </li>
             <li className="max-w-xs leading-relaxed">{siteConfig.contact.address}</li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-ivory/10">
-        <div className="mx-auto flex max-w-editorial flex-col gap-2 px-6 py-6 text-xs text-soft-grey sm:flex-row sm:items-center sm:justify-between lg:px-10">
-          <p>
-            © {year} {siteConfig.legalName}. All rights reserved.
-          </p>
-          <p>Industrial surface treatment · Phosphating chemicals</p>
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-editorial flex-col gap-2 px-6 py-5 text-body-sm text-soft-grey sm:flex-row sm:items-center sm:justify-between lg:px-10">
+          <p>© {year} {siteConfig.legalName}. All rights reserved.</p>
+          <p>Phosphating chemicals · Pretreatment · Jobwork</p>
         </div>
       </div>
     </footer>

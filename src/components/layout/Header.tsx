@@ -1,18 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { navLinks, siteConfig } from "@/data/site";
+import { navLinks } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 export function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 48);
+    const onScroll = () => setScrolled(window.scrollY > 48);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -25,35 +28,38 @@ export function Header() {
     };
   }, [open]);
 
-  const linkClass = (dark: boolean) =>
+  const solid = scrolled || open || !isHome;
+  const isDark = isHome && !solid;
+
+  const navLinkClass = (href: string) =>
     cn(
       "text-sm tracking-wide transition-colors",
-      dark
+      isDark
         ? "text-ivory/90 hover:text-ivory"
-        : "text-graphite/80 hover:text-copper",
+        : "rounded-md px-3 py-2 text-graphite/85 hover:bg-sage/60 hover:text-graphite",
+      !isDark && pathname === href && "bg-sage text-graphite",
+      isDark && pathname === href && "text-ivory",
     );
-
-  const isDark = !solid && !open;
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        solid || open
-          ? "border-b border-graphite/10 bg-ivory/95 backdrop-blur-md"
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300",
+        solid
+          ? "bg-white/92 shadow-header backdrop-blur-md"
           : "bg-gradient-to-b from-charcoal/70 to-transparent",
       )}
     >
       <div className="mx-auto flex max-w-editorial items-center justify-between gap-6 px-6 py-4 lg:px-10">
         <Link
-          href="#home"
+          href="/"
           className={cn(
-            "font-display text-lg font-semibold uppercase tracking-[0.12em]",
-            isDark ? "text-ivory" : "text-graphite",
+            "font-semibold uppercase tracking-[0.12em]",
+            isDark ? "text-lg text-ivory" : "text-graphite",
           )}
           onClick={() => setOpen(false)}
         >
-          {siteConfig.name}
+          Konark
         </Link>
 
         <nav
@@ -64,7 +70,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={linkClass(isDark)}
+              className={navLinkClass(item.href)}
             >
               {item.label}
             </Link>
@@ -73,9 +79,12 @@ export function Header() {
 
         <div className="hidden lg:block">
           <Button
-            href="#contact"
-            variant={isDark ? "primary" : "primary"}
-            className={cn(isDark && "border-ivory/30 bg-transparent text-ivory hover:bg-copper hover:border-copper")}
+            href="/contact"
+            variant={isDark ? "ghost" : "primary"}
+            className={cn(
+              isDark &&
+                "border border-ivory/30 bg-transparent text-ivory shadow-none ring-0 hover:border-ivory/50 hover:bg-ivory/5",
+            )}
           >
             Request a Quote
           </Button>
@@ -96,29 +105,28 @@ export function Header() {
         </button>
       </div>
 
-      <div
-        id="mobile-nav"
-        className={cn(
-          "border-t border-graphite/10 bg-ivory lg:hidden",
-          open ? "block" : "hidden",
-        )}
-      >
-        <nav className="flex flex-col px-6 py-6" aria-label="Mobile">
-          {navLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="border-b border-stone/60 py-4 text-graphite"
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Button href="#contact" className="mt-6 w-full">
-            Request a Quote
-          </Button>
-        </nav>
-      </div>
+      {open && (
+        <div
+          id="mobile-nav"
+          className="border-t border-graphite/10 bg-ivory lg:hidden"
+        >
+          <nav className="flex flex-col px-6 py-6" aria-label="Mobile">
+            {navLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="border-b border-stone/60 py-4 text-graphite"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Button href="/contact" className="mt-6 w-full">
+              Request a Quote
+            </Button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

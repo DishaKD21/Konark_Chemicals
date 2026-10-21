@@ -73,7 +73,7 @@ export function CompareSlider({
     <div className={cn("relative w-full", className)}>
       <div
         ref={containerRef}
-        className="relative aspect-[16/10] w-full overflow-hidden border border-graphite/10 bg-charcoal"
+        className="image-frame relative aspect-[16/10] max-h-[360px] w-full bg-sage/30"
       >
         <Image
           src={afterSrc}
@@ -110,7 +110,7 @@ export function CompareSlider({
           aria-valuemax={100}
           aria-valuenow={Math.round(position)}
           aria-label="Compare pretreated metal and black phosphated finish"
-          className="absolute top-1/2 z-20 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-copper bg-charcoal text-ivory transition-colors hover:bg-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
+          className="absolute top-1/2 z-20 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-graphite shadow-card transition-colors hover:bg-sage focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive/80"
           style={{ left: `${position}%` }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -123,12 +123,12 @@ export function CompareSlider({
         </button>
 
         <span
-          className="absolute bottom-4 left-4 z-20 border border-ivory/20 bg-charcoal/80 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-ivory backdrop-blur-sm"
+          className="absolute bottom-4 left-4 z-20 rounded-full bg-white/90 px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-wide text-graphite shadow-soft"
         >
           {beforeLabel}
         </span>
         <span
-          className="absolute bottom-4 right-4 z-20 border border-ivory/20 bg-charcoal/80 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-ivory backdrop-blur-sm"
+          className="absolute bottom-4 right-4 z-20 rounded-full bg-white/90 px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-wide text-graphite shadow-soft"
         >
           {afterLabel}
         </span>

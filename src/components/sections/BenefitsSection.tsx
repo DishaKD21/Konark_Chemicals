@@ -3,29 +3,24 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function BenefitsSection() {
   return (
-    <section className="border-t border-stone/80 bg-ivory py-24 lg:py-32">
+    <section className="section-y bg-sage/25">
       <div className="mx-auto max-w-editorial px-6 lg:px-10">
         <SectionHeading
-          eyebrow="Benefits"
-          title="What this chemistry is built to support."
-          description="Clear, process-level advantages — without unverified performance guarantees."
+          eyebrow="Why Konark Chemicals"
+          title="Industrial expertise you can discuss with our team"
+          description="Product-specific information, application-focused support, jobwork services, and direct communication — without invented guarantees."
         />
 
-        <div className="mt-16 grid gap-0 border-t border-graphite/10 lg:grid-cols-2">
-          {benefits.map((item, index) => (
-            <article
-              key={item.number}
-              className={`border-b border-graphite/10 py-10 lg:px-10 lg:py-12 ${
-                index % 2 === 0 ? "lg:border-r" : ""
-              }`}
-            >
-              <p className="font-display text-2xl font-semibold tabular-nums text-copper/90">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          {benefits.map((item) => (
+            <article key={item.number} className="card p-6 lg:p-7">
+              <p className="text-sm font-bold tabular-nums text-olive">
                 {item.number}
               </p>
-              <h3 className="mt-4 text-lg text-graphite">
+              <h3 className="mt-3 text-lg font-semibold text-graphite">
                 {item.title}
               </h3>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-soft-grey">
+              <p className="mt-3 text-body-sm leading-relaxed text-soft-grey">
                 {item.description}
               </p>
             </article>

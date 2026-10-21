@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { ProductSection } from "@/components/sections/ProductSection";
+import { HomeIntroSection } from "@/components/sections/HomeIntroSection";
+import { FeaturedProductsSection } from "@/components/sections/FeaturedProductsSection";
 import { SurfaceTransformation } from "@/components/sections/SurfaceTransformation";
+import { ServicesPreviewSection } from "@/components/sections/ServicesPreviewSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
-import { ApplicationsSection } from "@/components/sections/ApplicationsSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { QualitySection } from "@/components/sections/QualitySection";
-import { InquirySection } from "@/components/sections/InquirySection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { HomeTeamPreview } from "@/components/sections/HomeTeamPreview";
+import { CTASection } from "@/components/sections/CTASection";
 import { seoConfig } from "@/data/seo";
 
 export const metadata: Metadata = {
@@ -20,14 +19,21 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ProductSection />
+      <HomeIntroSection />
+      <FeaturedProductsSection />
       <SurfaceTransformation />
+      <ServicesPreviewSection />
       <BenefitsSection />
-      <ApplicationsSection />
-      <ProcessSection />
-      <QualitySection />
-      <InquirySection />
-      <ContactSection />
+      <HomeTeamPreview />
+      <CTASection
+        title="Request product information, pricing, or jobwork quotations."
+        description="Industrial buyers and engineering teams — share your application context and we will respond through our business contact channels."
+        primaryHref="/contact"
+        primaryLabel="Contact Konark Chemicals"
+        secondaryHref="/products"
+        secondaryLabel="Browse products"
+        dark
+      />
     </>
   );
 }

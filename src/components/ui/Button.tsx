@@ -5,11 +5,11 @@ type ButtonVariant = "primary" | "secondary" | "ghost";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "border border-copper bg-copper text-ivory hover:bg-graphite hover:border-graphite",
+    "bg-copper text-white shadow-soft hover:bg-graphite hover:shadow-card",
   secondary:
-    "border border-graphite/30 bg-transparent text-graphite hover:border-copper hover:text-copper",
+    "bg-white text-graphite shadow-soft ring-1 ring-graphite/10 hover:ring-olive/30 hover:text-copper",
   ghost:
-    "border border-transparent text-ivory hover:border-ivory/40 hover:bg-ivory/5",
+    "bg-white/10 text-graphite ring-1 ring-graphite/10 hover:bg-white hover:shadow-soft",
 };
 
 type ButtonProps = {
@@ -32,7 +32,7 @@ export function Button({
   disabled,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide transition-colors duration-200",
+    "btn-base",
     variantClasses[variant],
     disabled && "pointer-events-none opacity-50",
     className,

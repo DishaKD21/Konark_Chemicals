@@ -25,7 +25,7 @@ export function HeroSection() {
       <div className="relative mx-auto flex min-h-[92vh] max-w-editorial flex-col justify-end px-6 pb-20 pt-32 lg:justify-center lg:pb-28 lg:pt-40 lg:px-10">
         <div className="max-w-xl lg:max-w-lg">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-copper">
-            Industrial surface treatment
+            Industrial Surface Treatment
           </p>
           <div className="mt-6 h-px w-16 bg-copper" aria-hidden="true" />
           <h1 className="mt-8 text-4xl font-semibold leading-[1.08] tracking-display sm:text-[2.75rem] lg:text-[3.25rem]">
@@ -39,8 +39,12 @@ export function HeroSection() {
             conversion-coating process.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Button href="#products">Explore Our Products</Button>
-            <Button href="#contact" variant="ghost" className="border-ivory/25">
+            <Button href="/products">Explore Our Products</Button>
+            <Button
+              href="/contact"
+              variant="ghost"
+              className="border border-ivory/25 bg-transparent text-ivory shadow-none ring-0 hover:border-ivory/40 hover:bg-ivory/5"
+            >
               Discuss Your Requirement
             </Button>
           </div>

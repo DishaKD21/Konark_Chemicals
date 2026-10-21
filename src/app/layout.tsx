@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Sans } from "next/font/google";
+import { Manrope } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -7,17 +7,10 @@ import { siteConfig } from "@/data/site";
 import { seoConfig } from "@/data/seo";
 import "./globals.css";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
-
-const ibmPlexSans = IBM_Plex_Sans({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -74,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${ibmPlexSans.variable}`}>
+    <html lang="en" className={manrope.variable}>
       <body className="min-h-screen font-sans">
         <JsonLd />
         <Header />
